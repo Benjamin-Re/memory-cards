@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Card } from './components/Card'
 
 import './App.css'
 
@@ -6,7 +7,7 @@ function App() {
   const [data, setData] = useState()
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+    fetch('https://api.thedogapi.com/v1/images/search?limit=10')
     .then(response => response.json())
     .then(data => {
       // Work with JSON data here
@@ -18,13 +19,16 @@ function App() {
       console.error('Fetch error:', error);
     });
   }, []) // Empty dependency array means only run once
-
+  
   return (
     <>
       {data ? (
         <>
-          <p>Data: {data.species.name}</p>
-          <img src={data.sprites.front_default} alt="Sprite of Ditto Pokemon"/>
+          <Card url={data[0].url}></Card>
+          <Card url={data[1].url}></Card>
+          <Card url={data[2].url}></Card>
+          <Card url={data[3].url}></Card>
+          
         </>
       ) : (
         <p>Loading</p>
