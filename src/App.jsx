@@ -20,15 +20,17 @@ function App() {
     });
   }, []) // Empty dependency array means only run once
   
+  function handleClick() {
+    console.log('click')
+  }
+
   return (
     <>
       {data ? (
         <>
-          <Card url={data[0].url}></Card>
-          <Card url={data[1].url}></Card>
-          <Card url={data[2].url}></Card>
-          <Card url={data[3].url}></Card>
-          
+          {data.map((item, index) => {
+            return <Card url={item.url} key={index} onClick={handleClick}></Card>
+          })}
         </>
       ) : (
         <p>Loading</p>
