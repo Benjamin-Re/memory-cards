@@ -3,11 +3,11 @@ import { Card } from './components/Card';
 
 function App() {
   const [data, setData] = useState([]);
+  const [clickedCards, setClickedCards] = useState([])
 
   useEffect(() => {
     // Check if data exists in localStorage
     const storedData = localStorage.getItem('dogImages');
-
     if (storedData) {
       // If data exists in localStorage, parse and set it
       setData(JSON.parse(storedData));
@@ -29,8 +29,10 @@ function App() {
     }
   }, []); // Empty dependency array to fetch data only once
 
-  function handleClick() {
-    console.log('click');
+  function handleClick(index) {
+    console.log(`Clicked ${index}`);
+    setClickedCards(prevClickedCards => [...prevClickedCards, index]); // Updater function
+    console.log(clickedCards)
   }
 
   return (
@@ -38,7 +40,7 @@ function App() {
       {data.length > 0 ? (
         <>
           {data.map((item, index) => (
-            <Card key={index} url={item.url} onClick={handleClick} />
+            <Card key={index} url={item.url} onClick={() => handleClick(index)} />
           ))}
         </>
       ) : (
