@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from './components/Card';
+import './App.css'
 
 function App() {
   const [data, setData] = useState([]);
@@ -29,20 +30,37 @@ function App() {
     }
   }, []); // Empty dependency array to fetch data only once
 
-  function handleClick(index) {
-    console.log(`Clicked ${index}`);
-    setClickedCards(prevClickedCards => [...prevClickedCards, index]); // Updater function
+  function handleClick(id) {
+    console.log(`Clicked ${id}`);
+    setClickedCards(prevClickedCards => [...prevClickedCards, id]); // Updater function
     console.log(clickedCards)
+    if(clickedCards.includes(id)){
+      console.log('You already clicked this card before')
+    }
+    shuffleCards()
+  }
+
+  function shuffleCards() {
+    const copy = []
+    const original = [...data]
+    while(original.length > 0) {
+      let i = Math.floor(Math.random() * original.length)
+      if (i in original) {
+        copy.push(original[i])
+        original.splice(i, 1)
+      }
+    }
+    setData(copy)
   }
 
   return (
     <>
       {data.length > 0 ? (
-        <>
+        <div className='card-container'>
           {data.map((item, index) => (
-            <Card key={index} url={item.url} onClick={() => handleClick(index)} />
+            <Card key={index} url={item.url} onClick={() => handleClick(item.id)} />
           ))}
-        </>
+        </div>
       ) : (
         <p>Loading...</p>
       )}
