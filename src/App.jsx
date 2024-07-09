@@ -33,12 +33,17 @@ function App() {
   function handleClick(id) {
     console.log(`Clicked ${id}`);
     setClickedCards(prevClickedCards => [...prevClickedCards, id]); // Updater function
-    console.log(clickedCards)
     if(clickedCards.includes(id)){
-      console.log('You already clicked this card before')
+      console.log('Game over. You already clicked this card before')
+      setClickedCards([])
     }
     shuffleCards()
   }
+
+  useEffect(() => {
+    console.log(`score: ${clickedCards.length}`)
+    console.log(clickedCards)
+  }, [clickedCards]) // Get current state to work with
 
   function shuffleCards() {
     const copy = []
