@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from './components/Card';
+import { Scoreboard } from './components/Scoreboard';
 import './App.css'
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
 
   return (
     <>
+      <Scoreboard score={clickedCards.length}></Scoreboard>
       {data.length > 0 ? (
         <div className='card-container'>
           {data.map((item, index) => (
