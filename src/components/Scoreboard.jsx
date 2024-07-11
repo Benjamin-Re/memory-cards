@@ -5,8 +5,9 @@ export function Scoreboard (props) {
             {props.score === 9 ? (
                 <p>Game Won</p>
             ) : (
-                <p>Score: {props.score}</p>
+                <h3>Score: {props.score}</h3>
             )}
+            <p>Memory Cards: Click on the cards to score points. Don't click the same card twice or you lose.</p>
         </div>
     )
 }

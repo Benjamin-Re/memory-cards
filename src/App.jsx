@@ -60,7 +60,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className='container'>
       <Scoreboard score={clickedCards.length}></Scoreboard>
       {data.length > 0 ? (
         <div className='card-container'>
@@ -71,7 +71,7 @@ function App() {
       ) : (
         <p>Loading...</p>
       )}
-    </>
+    </div>
   );
 }
 
