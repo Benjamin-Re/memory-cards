@@ -41,11 +41,6 @@ function App() {
     shuffleCards()
   }
 
-  useEffect(() => {
-    console.log(`score: ${clickedCards.length}`)
-    console.log(clickedCards)
-  }, [clickedCards]) // Get current state to work with
-
   function shuffleCards() {
     const copy = []
     const original = [...data]
